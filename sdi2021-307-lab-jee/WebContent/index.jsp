@@ -23,6 +23,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <nav class="navbar navbar-default">
 	<div class= "container-fluid">
 		<ul class="nav navbar-nav">
+			<li><a href="productos">Productos</a></li>
 			<li><a href="incluirEnCarrito">Carrito</a></li>
 			<li><a href="login.jsp">Login</a></li>
 			<li><a href="admin.jsp">Administrar productos</a></li>
