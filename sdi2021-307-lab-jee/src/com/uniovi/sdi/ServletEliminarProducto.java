@@ -38,7 +38,12 @@ public class ServletEliminarProducto extends HttpServlet{
 	}
 	
 	private void eliminarDelCarrito(HashMap<String, Integer> carrito, String claveProducto) {
-		carrito.remove(claveProducto);
+		int elements = carrito.get(claveProducto);
+		if ( elements > 1) {
+			carrito.replace(claveProducto, elements - 1);
+		} else {
+			carrito.remove(claveProducto);
+		}
 	}
 
 
