@@ -22,7 +22,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 				<c:forEach var="producto" items="${productosTienda}">
 						<tr>
 								<img src="<c:out value="${producto.imagen}"/>"/>
-								<c:out value="${producto.nombre}"/>"
+								<c:out value="${producto.nombre}"/>
 								<c:out value="${producto.precio}"/> €
 						</tr>
 				</c:forEach>

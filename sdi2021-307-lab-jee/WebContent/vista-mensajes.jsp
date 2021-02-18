@@ -17,14 +17,12 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
 <!--Contenido-->
 <div class="container" id="contenedor-principal">
-	<h2>Vista-Carrito</h2>
+	<h2>Vista-Mensajes</h2>
 	<ul>
-				<c:forEach var="par" items="${paresCarrito}">
+				<c:forEach var="mensaje" items="${mensajesPublicados}">
 						<tr>
-								<li>${par.key} -${par.value} </li>
-								<a href="eliminarDelCarrito?producto=<c:out value="${par.key}"/>"
-									class="btn btn-default">Eliminar 1
-								</a>
+								<c:out value="${mensaje.usuario}"/> - 
+								<c:out value="${mensaje.texto}"/> 
 						</tr>
 				</c:forEach>
 	</ul>

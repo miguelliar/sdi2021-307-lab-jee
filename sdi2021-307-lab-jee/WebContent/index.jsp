@@ -27,6 +27,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 			<li><a href="incluirEnCarrito">Carrito</a></li>
 			<li><a href="login.jsp">Login</a></li>
 			<li><a href="admin.jsp">Administrar productos</a></li>
+			<li><a href="enviar-mensaje.jsp">Enviar mensaje</a></li>
 		</ul>
 		<div class="nav navbar-right"> <jsp:getProperty name="contador" 
 		property="total"/> Visitas </div>
