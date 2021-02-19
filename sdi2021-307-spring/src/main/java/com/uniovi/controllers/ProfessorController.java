@@ -21,26 +21,23 @@ public class ProfessorController {
     public String getList(Model model){
         return professorService.getProfessors().toString();
     }
-    
     @RequestMapping(value="/professor/add", method=RequestMethod.POST ) 
     public String setProfessor(@ModelAttribute Professor professor){ 
         professorService.addProfessor(professor);
         return "Ok";
     }
-    
     @RequestMapping("/professor/details/{id}" )
     public String getDetail(@PathVariable Long id){ 
         return professorService.getProfessor(id).toString();
     }
-    
     @RequestMapping("/professor/delete/{id}" )
     public String deleteProfessor(@PathVariable Long id) {
         professorService.deleteProfessor(id);
         return "Ok";
     }
-    
     @RequestMapping("professor/edit")
     public String editProfessor() {
         return "Professor edited";
     }
 }
+
