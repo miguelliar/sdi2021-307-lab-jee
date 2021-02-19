@@ -23,8 +23,8 @@ public class ProfessorController {
 	}
 	
 	@RequestMapping(value = "/professor/add", method=RequestMethod.POST )
-	public String setProfessor(@ModelAttribute Professor mark){
-		professorService.addProfessor(mark);
+	public String setProfessor(@ModelAttribute Professor professor){
+		professorService.addProfessor(professor);
 		return "Ok";
 	}
 	

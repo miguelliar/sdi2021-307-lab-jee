@@ -7,37 +7,27 @@ public class Professor {
 
 	@Id
 	@GeneratedValue
-	private Long id;
-	private String dni;
+	private Long dni;
 	private String name;
 	private String surname;
 	private String categoria;
 	
 	
 	
-	public Professor(Long id, String dni, String name, String surname, String categoria) {
+	public Professor(Long dni, String name, String surname, String categoria) {
 		super();
-		this.id = id;
 		this.dni = dni;
 		this.name = name;
 		this.surname = surname;
 		this.categoria = categoria;
 	}
 	
-	public Professor(){ }
+
 	
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public String getDni() {
+	public Long getDni() {
 		return dni;
 	}
-	public void setDni(String dni) {
+	public void setDni(Long dni) {
 		this.dni = dni;
 	}
 	public String getName() {
@@ -57,6 +47,13 @@ public class Professor {
 	}
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Professor [dni=" + dni + ", name=" + name + ", surname=" + surname + ", categoria=" + categoria + "]";
 	}
 	
 	
