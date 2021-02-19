@@ -13,7 +13,7 @@ import com.uniovi.entities.Mark;
 import com.uniovi.service.MarksService;
 
 @Controller
-public class MarksControllers {
+public class MarksController {
 	
 	@Autowired //Inyectar el servicio 
 	private MarksService marksService;
