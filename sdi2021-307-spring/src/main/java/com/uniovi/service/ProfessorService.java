@@ -3,6 +3,8 @@ package com.uniovi.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,14 @@ public class ProfessorService {
 	
 	@Autowired
 	private ProfessorRepository professorRepository;
+	
+	private List<Professor> professorList = new ArrayList<>();
+	
+	@PostConstruct
+    public void init() {
+        professorList.add(new Professor(1L, "Carmen", "Ligero", "matematicas"));
+        professorList.add(new Professor(2L, "Paco", "Bebelin", "Historia"));
+    }
 	
 	public List<Professor> getProfessors() {
 		List<Professor> professors= new ArrayList<Professor>();
