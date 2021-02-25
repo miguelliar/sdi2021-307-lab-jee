@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Mark;
-import com.uniovi.repositories.MarksRepository;
+import com.uniovi.repositories.MarkRepository;
 
 @Service
-public class MarksService {
+public class MarkService {
 	
 	@Autowired
-	private MarksRepository marksRepository;
+	private MarkRepository marksRepository;
 	
 	public List<Mark> getMarks() {
 		List<Mark> marks= new ArrayList<Mark>();

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Mark;
-import com.uniovi.service.MarksService;
+import com.uniovi.service.MarkService;
 
 @Controller
-public class MarksController {
+public class MarkController {
 	
 	@Autowired //Inyectar el servicio 
-	private MarksService marksService;
+	private MarkService marksService;
 	
 	@RequestMapping(value="/mark/add")
 	public String getMark() {
@@ -59,4 +59,11 @@ public class MarksController {
 		marksService.addMark(mark);
 		return"redirect:/mark/details/"+id;
 	}
+	
+	@RequestMapping("/mark/list/update")
+	public String updateList(Model model) {
+		model.addAttribute("markList", marksService.getMarks() );
+		return "mark/list :: tableMarks";
+	}
+	
 }
