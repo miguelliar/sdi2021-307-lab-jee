@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
 import com.uniovi.service.SecurityService;
 import com.uniovi.service.UsersService;
@@ -28,6 +29,12 @@ public class UsersController {
 	@Autowired 
 	private SignUpFormValidator signUpFormValidator;
 
+	@RequestMapping("/user/list/update")
+	public String updateList(Model model) {
+		model.addAttribute("usersList", usersService.getUsers());
+		return "user/list :: tableUsers";
+	}
+	
 	@RequestMapping("/user/list")
 	public String getListado(Model model) {
 		model.addAttribute("usersList", usersService.getUsers());
@@ -67,8 +74,11 @@ public class UsersController {
 
 	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
 	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user) {
-		user.setId(id);
-		usersService.addUser(user);
+		User originalUser = usersService.getUser(id);
+		originalUser.setDni(user.getDni());
+		originalUser.setName(user.getName());
+		originalUser.setLastName(user.getLastName());
+		usersService.addUser(originalUser);
 		return "redirect:/user/details/" + id;
 	}
 
@@ -103,4 +113,5 @@ public class UsersController {
 		model.addAttribute("markList", activeUser.getMarks());
 		return "home";
 	}
+	
 }
