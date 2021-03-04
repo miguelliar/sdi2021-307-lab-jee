@@ -13,21 +13,21 @@
 			<ul class="navnavbar-nav">
 				<li><a href="/">Home</a></li>
 				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text=#{menu.markmanagement}>
 						Gestión de notas <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
+						<li><a href="/mark/add" th:text=#{menu.addmark}>Agregar Nota</a></li>
+						<li><a href="/mark/list" th:text=#{menu.consultmark}>Ver Notas</a></li>
 					</ul>
 				</li>
 				<li id = "users-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text=#{menu.usermanagement}>
 						Gestión de Usuarios <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar Usuario</a></li>
-						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li><a href="/user/add" th:text=#{menu.adduser}>Agregar Usuario</a></li>
+						<li><a href="/user/list" th:text=#{menu.consultuser}>Ver Usuarios</a></li>
 					</ul>
 				</li>
 			</ul>
