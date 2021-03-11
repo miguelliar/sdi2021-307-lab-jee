@@ -1,24 +1,28 @@
 package com.uniovi.tests;
 
+
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.uniovi.tests.pageobjects.PO_HomeView;
-import com.uniovi.tests.pageobjects.PO_Properties; 
+import com.uniovi.tests.pageobjects.PO_Properties;
+import com.uniovi.tests.pageobjects.PO_RegisterView;
+import com.uniovi.tests.pageobjects.PO_View; 
 
 //Ordenamos las pruebas por el nombre del método
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 @SpringBootTest
-class Sdi2021307SpringApplicationTests {
+public class Sdi2021307SpringApplicationTests {
 	
 	//En Windows (Debe ser la versión 65.0.1 y desactivar las actualizaciones automáticas)):
 	static String PathFirefox65= "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
@@ -86,5 +90,43 @@ class Sdi2021307SpringApplicationTests {
 		PO_HomeView.checkChangeIdiom(driver, "btnSpanish", "btnEnglish", PO_Properties.getSPANISH(), PO_Properties.getENGLISH());
 		//SeleniumUtils.esperarSegundos(driver, 2);
 	}
+	
+	//PR05. Pruebadelformularioderegistro. registro con datos correctos
+	@Test
+	public void PR05() {
+		//Vamosalformularioderegistro
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		//Rellenamosel formulario.
+		PO_RegisterView.fillForm(driver, "77777778A", "Josefo", "Perez", "77777", "77777");
+		//Comprobamosqueentramosenlasecciónprivada
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+	}
 
+	//PR06. Prueba del formulario de registro. DNI repetido en la BD, Nombre corto, .... pagination pagination-centered, Error.signup.dni.length
+	@Test
+	public void PR06() {
+		//Vamos al formulario de registro 
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+		//Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "99999990A", "Josefo", "Perez", "77777", "77777");
+		PO_View.getP();
+		//COmprobamos el error de DNI repetido.
+		PO_RegisterView.checkKey(driver, "Error.signup.dni.duplicate", PO_Properties.getSPANISH() );
+		//Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "99999990B", "Jose", "Perez","77777", "77777");
+		//COmprobamos el error de Nombrecorto.
+		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH() );
+		//Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "88888880A", "Josefo", "Per", "77777", "77777");
+		//COmprobamos el error de Apellido corto.
+		PO_RegisterView.checkKey(driver, "Error.signup.lastName.length", PO_Properties.getSPANISH() );
+		//Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "77777770B", "Josefo", "Perez", "777", "77777");
+		//COmprobamos el error de contraseña corta.
+		PO_RegisterView.checkKey(driver, "Error.signup.password.length", PO_Properties.getSPANISH() );
+		//Rellenamos el formulario.
+		PO_RegisterView.fillForm(driver, "66666660B", "Josefo", "Per", "77777", "88888");
+		//COmprobamos el error de contraseña coincide.
+		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH() );				
+	}
 }
