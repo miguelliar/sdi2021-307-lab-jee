@@ -14,6 +14,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View; 
@@ -128,5 +129,59 @@ public class Sdi2021307SpringApplicationTests {
 		PO_RegisterView.fillForm(driver, "66666660B", "Josefo", "Per", "77777", "88888");
 		//COmprobamos el error de contraseña coincide.
 		PO_RegisterView.checkKey(driver, "Error.signup.name.length", PO_Properties.getSPANISH() );				
+	}
+	
+	@Test
+	public void PR07() {
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999990A", "123456");
+		//COmprobamos que entramos en la pagina privada de Alumno
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+	}
+	
+	@Test
+	public void PR08() {
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999993D", "123456");
+		//COmprobamos que entramos en la pagina privada de profesores
+		PO_View.checkElement(driver, "text", "Lista de alumnos");
+	}
+	
+	@Test
+	public void PR09() {
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999988F", "123456");
+		//COmprobamos que entramos en la pagina privada de admin
+		PO_View.checkElement(driver, "text", "Lista de profesores");
+	}
+	
+	@Test
+	public void PR10() {
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "999990A", "123456");
+		//COmprobamos que no entramos
+		PO_View.checkElement(driver, "text", "Identifícate");
+	}
+	
+	@Test
+	public void PR11() {
+		//Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		//Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999990A", "123456");
+		//COmprobamos que entramos en la pagina privada de Alumno
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+		//Salimos
+		PO_LoginView.pressLogout(driver);
+		//Comprobamos que salimos 
+		PO_View.checkElement(driver, "text", "Identifícate");
 	}
 }
