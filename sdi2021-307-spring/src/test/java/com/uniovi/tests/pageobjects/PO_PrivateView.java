@@ -46,6 +46,33 @@ public class PO_PrivateView extends PO_NavView {
 	
 	static public void loginAsAdmin(WebDriver driver) {
 		login(driver, "99999988F", "123456");
-		
+		PO_View.checkElement(driver, "text", "99999988F");
+	}
+	
+	static public void fillForm(WebDriver driver, String dnip, String namep, String lastnamep, String passwordp) {
+		WebElement role= driver.findElement(By.name("role"));
+		role.click();
+		role.clear();
+		role.sendKeys("r");
+		role.click();
+		WebElement dni= driver.findElement(By.name("dni"));
+		dni.click();
+		dni.clear();
+		dni.sendKeys(dnip);
+		WebElement name= driver.findElement(By.name("name"));
+		name.click();
+		name.clear();
+		name.sendKeys(namep);
+		WebElement lastname= driver.findElement(By.name("lastName"));
+		lastname.click();
+		lastname.clear();
+		lastname.sendKeys(lastnamep);
+		WebElement password= driver.findElement(By.name("password"));
+		password.click();
+		password.clear();
+		password.sendKeys(passwordp);
+		//Pulsar el botonde Alta.
+		By boton= By.className("btn");
+		driver.findElement(boton).click();
 	}
 }

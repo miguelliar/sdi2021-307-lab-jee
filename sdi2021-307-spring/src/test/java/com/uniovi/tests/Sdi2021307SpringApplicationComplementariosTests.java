@@ -80,6 +80,11 @@ public class Sdi2021307SpringApplicationComplementariosTests {
 	// PR16. Registro de profesores con datos válidos
 	@Test
 	public void PR16() {
+		PO_PrivateView.loginAsAdmin(driver);
+		PO_HomeView.clickOption(driver, "Gestión de Usuarios", "text", "btn btn-primary");
+		PO_HomeView.clickOption(driver, "Agregar usuario", "text", "btn btn-primary");
+		PO_PrivateView.fillForm(driver, "99999993E", "Manuel", "Ferreras", "123456");
+		PO_View.checkElement(driver, "text", "99999993E");
 		
 	}
 	
@@ -87,13 +92,24 @@ public class Sdi2021307SpringApplicationComplementariosTests {
 	// PR17. Regustro de profesores con datos inválidos
 	@Test
 	public void PR17() {
-		
+		PO_PrivateView.loginAsAdmin(driver);
+		PO_HomeView.clickOption(driver, "Gestión de Usuarios", "text", "btn btn-primary");
+		PO_HomeView.clickOption(driver, "Agregar usuario", "text", "btn btn-primary");
+		PO_PrivateView.fillForm(driver, "", "Manuel", "Ferreras", "123456");
+		PO_PrivateView.checkKey(driver, "Error.register.empty", PO_Properties.getSPANISH());
+		PO_PrivateView.fillForm(driver, "99999993E", "", "Ferreras", "123456");
+		PO_PrivateView.checkKey(driver, "Error.register.empty", PO_Properties.getSPANISH());
+		PO_PrivateView.fillForm(driver, "99999993E", "Manuel", "", "123456");
+		PO_PrivateView.checkKey(driver, "Error.register.empty", PO_Properties.getSPANISH());
 	}
 	
 	// PR18. Logearse como profesor y como alumno y comprobar que no puedan dar de alta a un profesor
 	// PR18. Ver que solo usuarios autorizados pueden dar de alta a un profesor
 	@Test
 	public void PR18() {
-		
+		PO_PrivateView.loginAsAdmin(driver);
+		PO_HomeView.clickOption(driver, "Gestión de Usuarios", "text", "btn btn-primary");
+		PO_PrivateView.loginAsStudent(driver);
+		PO_HomeView.clickOption(driver, "Gestión de Usuarios", "text", "btn btn-primary");
 	}
 }
